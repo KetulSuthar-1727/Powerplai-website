@@ -945,61 +945,6 @@ function AboutSection() {
           ))}
         </div>
       </div>
-
-      {/* Partners strip */}
-      <div
-        style={{
-          borderTop: `1px solid ${T.border}`,
-          padding: '48px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '32px',
-        }}
-      >
-        <span
-          style={{
-            fontFamily: T.bodyFont,
-            fontSize: '11px',
-            fontWeight: 700,
-            textTransform: 'uppercase' as const,
-            letterSpacing: '0.1em',
-            color: T.chalkTertiary,
-          }}
-        >
-          Partners &amp; Collaborators — Coming Soon
-        </span>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '32px',
-            justifyContent: 'center',
-          }}
-        >
-          {['Partner A', 'Partner B', 'Partner C', 'Partner D', 'Partner E'].map((p) => (
-            <div
-              key={p}
-              style={{
-                width: '120px',
-                height: '40px',
-                background: T.surface,
-                border: `1px solid ${T.border}`,
-                borderRadius: '4px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontFamily: T.bodyFont,
-                fontSize: '11px',
-                color: T.chalkTertiary,
-                letterSpacing: '0.05em',
-              }}
-            >
-              {p}
-            </div>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
@@ -1335,33 +1280,6 @@ function ContactSection() {
                 }}
               />
               <div>
-                <span
-                  style={{
-                    fontFamily: T.bodyFont,
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    textTransform: 'uppercase' as const,
-                    letterSpacing: '0.1em',
-                    color: T.volt,
-                    display: 'block',
-                    marginBottom: '8px',
-                  }}
-                >
-                  Direct Contact
-                </span>
-                <h3
-                  style={{
-                    fontFamily: T.displayFont,
-                    fontSize: '40px',
-                    fontWeight: 400,
-                    color: T.chalk,
-                    textTransform: 'uppercase' as const,
-                    lineHeight: 1.1,
-                    margin: 0,
-                  }}
-                >
-                  Contact Abhishek
-                </h3>
                 <p
                   style={{
                     fontFamily: T.bodyFont,
