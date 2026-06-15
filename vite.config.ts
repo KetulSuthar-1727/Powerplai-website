@@ -42,38 +42,42 @@ function apiDevPlugin(): Plugin {
 	};
 }
 
+const airoAssetsMiddleware = (req: any, res: any, next: any) => {
+	if (!req.url || !req.url.startsWith("/airo-assets/")) return next();
+	try {
+		const urlPath = req.url.split("?")[0];
+		let key = "";
+		if (urlPath.startsWith("/airo-assets/images/")) {
+			key = urlPath.substring("/airo-assets/images/".length);
+		} else if (urlPath.startsWith("/airo-assets/videos/")) {
+			key = urlPath.substring("/airo-assets/videos/".length);
+		} else {
+			key = urlPath.substring("/airo-assets/".length);
+		}
+
+		const manifestPath = path.resolve(__dirname, "airo-media.json");
+		if (fs.existsSync(manifestPath)) {
+			const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
+			if (manifest[key] && manifest[key].currentUrl) {
+				res.writeHead(302, { Location: manifest[key].currentUrl });
+				res.end();
+				return;
+			}
+		}
+		next();
+	} catch (err) {
+		next(err);
+	}
+};
+
 function airoAssetsPlugin(): Plugin {
 	return {
 		name: "airo-assets-dev",
-		apply: "serve",
 		configureServer(server: ViteDevServer) {
-			server.middlewares.use(async (req, res, next) => {
-				if (!req.url || !req.url.startsWith("/airo-assets/")) return next();
-				try {
-					const urlPath = req.url.split("?")[0];
-					let key = "";
-					if (urlPath.startsWith("/airo-assets/images/")) {
-						key = urlPath.substring("/airo-assets/images/".length);
-					} else if (urlPath.startsWith("/airo-assets/videos/")) {
-						key = urlPath.substring("/airo-assets/videos/".length);
-					} else {
-						key = urlPath.substring("/airo-assets/".length);
-					}
-
-					const manifestPath = path.resolve(__dirname, "airo-media.json");
-					if (fs.existsSync(manifestPath)) {
-						const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
-						if (manifest[key] && manifest[key].currentUrl) {
-							res.writeHead(302, { Location: manifest[key].currentUrl });
-							res.end();
-							return;
-						}
-					}
-					next();
-				} catch (err) {
-					next(err);
-				}
-			});
+			server.middlewares.use(airoAssetsMiddleware);
+		},
+		configurePreviewServer(server: any) {
+			server.middlewares.use(airoAssetsMiddleware);
 		},
 	};
 }
