@@ -32,9 +32,5 @@ const appEl = (
     </HelmetProvider>
   </StrictMode>
 );
+createRoot(container).render(appEl);
 
-if (container.innerHTML.trim() !== '') {
-  hydrateRoot(container, appEl);
-} else {
-  createRoot(container).render(appEl);
-}
