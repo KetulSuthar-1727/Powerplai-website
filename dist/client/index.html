@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function () {
+        try {
+          var u = new URL(location.href);
+          if (u.searchParams.has('airoShareToken')) {
+            u.searchParams.delete('airoShareToken');
+            history.replaceState(null, '', u.toString());
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <meta name="referrer" content="same-origin" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--app-head-->
+    <script src="/airo-video-slots.js"></script>
+    <script src="/airo-logo-orientation.js"></script>
+    <script type="module" crossorigin src="/assets/index-DLT1FlCa.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/query-CW1HVcBK.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-vendor-CTfyAn7f.js">
+    <link rel="modulepreload" crossorigin href="/assets/radix-ui-C-cswEc0.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-BJGQyZFT.css">
+  </head>
+  <body class="fs-unmask-airo-app-builder">
+    <div id="app" class="fs-unmask-airo-app-builder"><!--app-html--></div>
+    <script src="/analytics.js"></script>
+  </body>
+</html>
