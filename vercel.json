@@ -2,13 +2,14 @@
   "cleanUrls": true,
   "buildCommand": "npm run build",
   "outputDirectory": "dist/client",
+
   "rewrites": [
     {
-      "source": "/airo-assets/:type/:key*",
-      "destination": "/api/airo-assets?type=:type&key=:key*"
+      "source": "/airo-assets/:path*",
+      "destination": "/api/airo-assets?key=:path*"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]
